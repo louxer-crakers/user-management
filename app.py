@@ -23,18 +23,7 @@ s3_client = boto3.client(
 @app.route("/")
 def index():
     response = requests.get(API_URL)
-    # Parsing body jika perlu (seperti kasus sebelumnya)
-    api_data = response.json()
-    
-    users = []
-    if 'body' in api_data and isinstance(api_data['body'], str):
-        import json
-        users = json.loads(api_data['body'])
-    elif 'body' in api_data:
-        users = api_data['body']
-    else:
-        users = api_data
-
+    users = response.json()
     # Kita tidak butuh variabel s3_bucket di sini lagi karena URL gambar sudah lengkap di database
     return render_template("index.html", users=users)
 
