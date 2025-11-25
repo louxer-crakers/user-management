@@ -9,18 +9,13 @@ load_dotenv()
 app = Flask(__name__)
 
 # Konfigurasi AWS
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
-AWS_SESSION_TOKEN = os.getenv("AWS_SESSION_TOKEN")
+# Konfigurasi AWS
 AWS_REGION = os.getenv("AWS_REGION")
 S3_BUCKET = os.getenv("S3_BUCKET_NAME")
 API_URL = os.getenv("API_GATEWAY_URL")
 
 s3_client = boto3.client(
     "s3",
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    aws_session_token=AWS_SESSION_TOKEN,
     region_name=AWS_REGION,
 )
 
@@ -52,7 +47,7 @@ def add_user():
         image_filename = f"users/{image.filename}"
         try:
             s3_client.upload_fileobj(image, S3_BUCKET, image_filename)
-            image_url = f"https://{S3_BUCKET}.s3-{AWS_REGION}.amazonaws.com/{image_filename}"
+            image_url = f"https://{S3_BUCKET}.s3.{AWS_REGION}.amazonaws.com/{image_filename}"
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 

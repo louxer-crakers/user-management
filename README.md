@@ -1,21 +1,18 @@
+# Infrastructure Architecture
+This application requires a specific network setup on AWS:
+- **VPC**: Create a VPC with **2 Public Subnets** and **2 Private Subnets**.
+- **Database**: The RDS instance must be deployed in the **Private Subnets** for security.
+- **Deployment**: The application is deployed using an **Auto Scaling Group (ASG)**.
+
 # CI/CD Development
 ## Install Dependencies
 `pip install -r requirements.txt`
 
 ## Setting Environments
-AWS_ACCESS_KEY_ID=your aws access key<br/>
-AWS_SECRET_ACCESS_KEY=your secret access key<br/>
-AWS_SESSION_TOKEN=your sessions token<br/>
 AWS_REGION=us-east-1<br/>
-EFS_PATH=yourpath/app.log<br/>
 S3_BUCKET_NAME=your bucket name<br/>
 API_GATEWAY_URL=your API Gateway URL<br/>
-ECR_REPOSITORY=your name ECR<br/>
-ECR_REGISTRY=your url image
 
 
 ## Running Apps
 python app.py
-
-# Problem Solving
-You must solve the problem in the CI/CD
