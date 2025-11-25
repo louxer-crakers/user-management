@@ -2,9 +2,9 @@
 This application requires a specific network setup on AWS:
 - **VPC**: Create a VPC with **2 Public Subnets** and **2 Private Subnets**.
 - **Database**: The RDS instance must be deployed in the **Private Subnets** for security.
-- **Deployment**: The application is deployed using an **Auto Scaling Group (ASG)**.
+- **Deployment**: The application is deployed using an **Auto Scaling Group (ASG)** (Use Amazon Linux 2023 as the AMI).
 
-# CI/CD Development
+# Run the APP
 ## Install Dependencies
 `pip install -r requirements.txt`
 
